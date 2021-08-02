@@ -21,12 +21,12 @@
 		</tr>
 		<c:forEach var="member" items="${membersList}">
 			<tr align="center">
-				<td>${member.user_ID}</td>
-				<td>${member.user_PW}</td>
-				<td>${member.user_NAME}</td>
-				<td>${member.user_Email}</td>
-				<td>${member.user_Address}</td>
-				<td><a href="${contextPath}/member/removeMember.do?user_ID=${member.user_ID}">삭제하기</a></td>
+				<td>${member.userID}</td>
+				<td>${member.userPW}</td>
+				<td>${member.userNAME}</td>
+				<td>${member.userEmail}</td>
+				<td>${member.userAddress}</td>
+				<td><a href="${contextPath}/member/removeMember.do?user_ID=${member.userID}">삭제하기</a></td>
 			</tr>
 		</c:forEach>
 	</table>

@@ -33,7 +33,9 @@
 	</script>
 	<style type="text/css">
 		.table{
-		    width: 100%;
+		     width: 60%;
+		    margin-left: auto;
+		    margin-right: auto;
 		    border-collapse: collapse;
 		    line-height: 24px;
 		}
@@ -71,7 +73,7 @@
 		
 		<c:choose>
 		
-			<c:when test="${empty member.user_ID }">
+			<c:when test="${empty member.userID }">
 			<tr height="10">
 					<td colspan="5">
 						<p align="center">
@@ -80,6 +82,8 @@
 					</td>
 				</tr>
 		</c:when>
+		
+		
 		
 			<c:when test="${empty boardsList }">
 				<tr height="10">
@@ -97,22 +101,23 @@
 		<c:forEach var="board" items="${boardsList }" varStatus="boardNum" >
 			<tr align="center">
 				<td>${num }</td>
-				<td>${board.user_id }</td>
+				<td>${board.userID }</td>
 				<td>
-			<c:choose>
-				<c:when test="${board.level > 1 }">
-					<c:forEach begin="1" end="${board.level }" step="1">
-						<span style="padding-left: 5px;"></span>
-					</c:forEach>
-					<span style="font-size: 12px; color: red">[답변]</span><a href="${contextPath}/board/viewBoard.do?qa_No=${board.qa_No}">${board.qa_title }</a>
-			 </c:when>	
-			 <c:otherwise>
-			 	<a href="${contextPath}/board/viewBoard.do?qa_No=${board.qa_No}">${board.qa_title }</a>
-			 </c:otherwise>
-			</c:choose>	
+			 <c:if test="${board.qaSecret eq 'N'}" >
+            <c:choose>
+                <c:when test="${board.userID eq member.userID}">
+                    <a href="${contextPath}/board/viewBoard.do?qaNo=${board.qaNo}">${board.qaTitle }</a>
+                </c:when>
+                <c:otherwise>비밀글 입니다.</c:otherwise>
+            </c:choose>
+        </c:if>
+        <c:if test="${board.qaSecret eq 'Y'}" >
+            <a href="${contextPath}/board/viewBoard.do?qaNo=${board.qaNo}">${board.qaTitle }</a>
+        </c:if>
+			 	
 			 </td>
-				<td>${board.qa_category }</td>
-				<td>${board.qa_date }</td>
+				<td>${board.qaCategory }</td>
+				<td>${board.qaDate }</td>
 			</tr>
 			<c:set var="num" value="${num-1 }"></c:set>
 		</c:forEach>

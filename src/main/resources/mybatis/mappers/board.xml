@@ -7,13 +7,14 @@
   
   <resultMap type="boardVO" id="boardResult">
   	<result property="level" column="lvl"/>
-  	<result property="qa_No"  column="qa_No" />
-  	<result property="qa_parentNo"  column="qa_parentNo" />
-  	<result property="qa_title"  column="qa_title" />
-  	<result property="qa_category"  column="qa_category" />
-  	<result property="qa_content"  column="qa_content" />
-  	<result property="qa_date"  column="qa_date" />
-  	<result property="user_ID"  column="user_ID" />
+  	<result property="qaNo"  column="qa_No" />
+  	<result property="qaParentNo"  column="qa_parentNo" />
+  	<result property="qaTitle"  column="qa_title" />
+  	<result property="qaCategory"  column="qa_category" />
+  	<result property="qaContent"  column="qa_content" />
+  	<result property="qaDate"  column="qa_date" />
+  	<result property="userID"  column="user_ID" />
+  	<result property="qaSecret" column="qa_secret" />
   </resultMap>
    
   <select id="selectAllBoardList" resultMap="boardResult">
@@ -28,6 +29,7 @@
 		                      ,qa_content
 		                      ,qa_date
 		                      ,user_ID
+		                      ,qa_secret
 		                from (select level as lvl
 		                              ,qa_No
 		                              ,qa_parentNo
@@ -36,13 +38,15 @@
 				                      ,qa_content
 				                      ,qa_date
 				                      ,user_ID
+				                      ,qa_secret
 		                        from q_board
 		                        start WITH qa_parentNo=0              
 		                        CONNECT by PRIOR qa_No=qa_parentNo 
 		                        order SIBLINGS by qa_No desc
 		                      )  
 		            )
-		where recNum BETWEEN (#{section}-1)*100+(#{pageNum}-1)*10+1 and (#{section}-1)*100+#{pageNum}*10 
+		where recNum BETWEEN (#{section}-1)*100+(#{pageNum}-1)*10+1 and (#{section}-1)*100+#{pageNum}*10
+		
  
   ]]>
   </select>
@@ -51,16 +55,19 @@
 		select count(qa_No) from q_board
 	</select>
   
-  <insert id="insertBoard" parameterType="boardVO">
+  <insert id="insertBoard" parameterType="java.util.Map">
   	<![CDATA[
-  		insert into q_board (qa_no, qa_title, qa_category, qa_content, user_ID)
+  		insert into q_board (qa_No, qa_title, qa_category, qa_content, qa_secret, user_ID)
 
-  		values(
-  			(select nvl(max(qa_no)+1, 1)from q_board),
-  			#{qa_title}, #{qa_category}, #{qa_content}, #{user_ID}
-  		)
+  		values (#{qa_No}, #{qa_title}, #{qa_category}, #{qa_content}, #{qa_secret}, #{user_ID})
   	]]>
   </insert>
+  
+  <select id="selectNewQa_No" resultType="int">
+		<![CDATA[
+			SELECT NVL(MAX(qa_No), 0) + 1 FROM q_board
+		]]>
+	</select>
   
   <delete id="deleteBoard" parameterType="Integer">
   		<![CDATA[
@@ -83,7 +90,8 @@
   		update q_board set
   			qa_title = #{qa_title},
   			qa_category = #{qa_category},
-  			qa_content = #{qa_content}
+  			qa_content = #{qa_content},
+  			qa_secret = #{qa_secret}
   		where qa_No = #{qa_No}
   	]]>
   </update>

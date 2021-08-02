@@ -127,10 +127,10 @@ width: 400px;
 		<div >
 		<h2><b>WELCOME</b></h2>
 		<div class="idForm">
-			<input type="text" class="id" placeholder="ID" name="user_ID">
+			<input type="text" class="id" placeholder="ID" name="userID">
 		</div>
 		<div class="pwForm">
-			<input type="password" class="pw" placeholder="PW" name="user_PW">
+			<input type="password" class="pw" placeholder="PW" name="userPW">
 		</div>
 		<input type="submit" class="btn btn-warning form-control" value="LOG IN">
 		<div class="bottomText">

@@ -14,14 +14,20 @@
 	.btn{
 		border: 1px solid black;
 	}
+	
+	#wrap{
+		width: 60%;
+		margin-left: auto;
+		margin-right: auto;
+	}
 </style>
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 <body>
 
-<div class="col-md-9 cont">
+<div id="wrap">
+<div class="">
 	<div class="row">
-	<div class="col-md-9">
 	<div class="accordion" id="accordionExample">
   <div class="card">
     <div class="card-header" id="headingOne">
@@ -79,10 +85,10 @@
     </div>
   </div>
 </div>
-</div>
-</div>
-</div>
 
+</div>
+</div>
+</div>
 
 <script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
 </body>

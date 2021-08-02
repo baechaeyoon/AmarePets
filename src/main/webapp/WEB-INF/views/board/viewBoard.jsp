@@ -16,6 +16,7 @@
 	<link href="${pageContext.request.contextPath}/resources/css/kfonts2.css" rel="stylesheet" >
 <title>상세조회 페이지</title>
 <style type="text/css">
+		input[type=radio] { vertical-align:middle; }
 		#tr_btn_modify {
 			display: none;
 		}
@@ -23,9 +24,11 @@
 			visibility: hidden;
 		}
 		table{
-		    width: 70%;
+		     width: 60%;
+		    margin-left: auto;
+		    margin-right: auto;
 		    border-collapse: collapse;
-		    line-height: 24px;
+		    line-height: 19px;
 		}
 		th {
 		    border-top:1px solid black;
@@ -47,6 +50,7 @@
 		document.getElementById("qa_title_mod").disabled=false;
 		document.getElementById("qa_content_mod").disabled=false;
 		document.getElementById("qa_category_mod").disabled=false;
+		document.getElementById("qa_secret_mod").disabled=false;
 		document.getElementById("tr_btn_modify").style.display="block";
 		document.getElementById("tr_btn").style.display="none";
 		$(".tr_modEnable").css("visibility", "visible");
@@ -57,7 +61,7 @@
 		obj.submit();
 	}
 	function removeList(obj) {
-		obj.action = "${contextPath}/board/removeBoard.do?qa_No=${board.qa_No}"
+		obj.action = "${contextPath}/board/removeBoard.do?qaNo=${board.qaNo}"
 		obj.submit();
 	}
 	
@@ -66,7 +70,7 @@
 		obj.submit();
 	}
 	
-	function fn_reply_form(url, qa_No) {
+	/* function fn_reply_form(url, qa_No) {
 		var form = document.createElement("form");
 		form.setAttribute("method", "post");
 		form.setAttribute("action", url);
@@ -79,7 +83,7 @@
 		form.appendChild(parentNoInput);
 		document.body.appendChild(form);
 		form.submit();
-	}
+	} */
 </script>
 </head>
 <body>
@@ -89,21 +93,21 @@
 			
 			<tr>
 				<td width="200"><p align="center">문의번호</td>
-				<td width="300">
-					<input type="text" name="qa_No" value="${board.qa_No}" disabled/>
-					<input type="hidden" name="qa_No" value="${board.qa_No }" />
+				<td colspan="2" width="300">
+					<input type="text" name="qaNo" value="${board.qaNo}" disabled/>
+					<input type="hidden" name="qaNo" value="${board.qaNo }" />
 				</td>
 			</tr>
 				
 			<tr>
 				<td width="200"><p align="center">제목</td>
-				<td width="300"><input type="text" id="qa_title_mod" name="qa_title" value="${board.qa_title}" disabled /> </td>
+				<td colspan="2" width="300"><input type="text" id="qa_title_mod" name="qa_title" value="${board.qaTitle}" disabled /> </td>
 			</tr>
 			
 			<tr>
 				<td width="200"><p align="center">문의종류</td>
-				<td width="300"><select name="qa_category" id="qa_category_mod" disabled>
-					<option value="${board.qa_category}" selected disabled>${board.qa_category}</option>
+				<td colspan="2" width="300"><select name="qaCategory" id="qaCategory_mod" disabled>
+					<option value="${board.qaCategory}" >${board.qaCategory}</option>
 					<option value="동물" >동물</option>
 					<option value="개인" >개인</option>
 					<option value="단체" >단체</option>
@@ -113,32 +117,43 @@
 			
 			<tr>
 				<td width="200"><p align="center">내용</td>
-				<td width="300"><textarea rows="4" id="qa_content_mod" cols="40" name="qa_content" disabled>${board.qa_content}</textarea> </td>
+				<td colspan="2" width="300"><textarea rows="4" id="qa_content_mod" cols="40" name="qa_content" disabled>${board.qaContent}</textarea> </td>
 			</tr>
 			
 			<tr>
 				<td width="200"><p align="center">등록일</td>
-				<td width="300"><input type="text" name="qa_date" value="${board.qa_date}" disabled/> </td>
+				<td colspan="2" width="300"><input type="text" name="qa_date" value="${board.qaDate}" disabled/> </td>
+			</tr>
+			
+			<tr>
+				<td><p align="center">공개여부</td>
+				<td colspan="2" width="300"><select name="qa_secret" id="qa_secret_mod" disabled>
+					<option value="${board.qaSecret}" >공개여부 : ${board.qaSecret}</option>
+					<option value="Y" >공개</option>
+					<option value="N" >비공개</option>
+				</select> </td>
 			</tr>
 			
 			<tr>
 				<td width="200"><p align="center">등록자</td>
-				<td width="300"><input type="text" name="user_id" value="${board.user_id}" disabled/> </td>
+				<td colspan="2" width="300"><input type="text" name="user_id" value="${board.userID}" disabled/> </td>
 			</tr>
 			
 			<tr id="tr_btn_modify" align="right">
 				<td colspan="2">
-					<input type="button" value="수정반영하기" onclick="fn_modify_article(frmBoard)" />
-					<input type="button" value="취소" onclick="backToList(frmBoard)" />
+					<input type="button" class="btn btn-success" value="수정반영하기" onclick="fn_modify_article(frmBoard)" />
+					<input type="button" class="btn btn-danger" value="취소" onclick="backToList(frmBoard)" />
 				</td>
 			</tr>
 			
 			<tr id="tr_btn">
-				<td colspan="2" align="center">
-					<input type="button" value="수정하기" onclick="fn_enable()" />
-					<input type="button" value="삭제하기" onclick="removeList(this.form)">
-					<input type="button" value="게시글목록" onclick="backToList(this.form)">
-					<input type="button" value="답급달기" onclick="fn_reply_form('${contextPath}/board/replyForm.do', ${board.qa_No})" />   <!-- 요청명과 글번호를 전달함  -->
+				<td colspan="3" align="center">
+				<c:if test="${member.user_ID == board.user_ID }">
+					<input type="button" class="btn btn-warning" value="수정하기" onclick="fn_enable()" />
+					<input type="button" class="btn btn-danger" value="삭제하기" onclick="removeList(this.form)">
+					</c:if>
+					<input type="button" class="btn btn-primary" value="게시글목록" onclick="backToList(this.form)">
+					<%-- <input type="button" value="답급달기" onclick="fn_reply_form('${contextPath}/board/replyForm.do', ${board.qa_No})" />   <!-- 요청명과 글번호를 전달함  --> --%>
 				</td>
 			</tr>
 	</table>

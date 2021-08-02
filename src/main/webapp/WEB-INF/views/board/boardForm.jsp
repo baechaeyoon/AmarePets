@@ -43,7 +43,7 @@
 </head>
 
 <body>
-	<form action="${contextPath}/board/addBoard.do" method="post">
+	<form action="${contextPath}/board/addBoard.do" method="post" enctype="multipart/form-data">
 		<h1 class="text_center">새글작성 페이지</h1>
 		<table align="center">
 			<tr>
@@ -66,11 +66,20 @@
 				<td width="200"><p align="right">내용</td>
 				<td width="400"><textarea rows="20" cols="60" name="qa_content"></textarea> </td>
 			</tr>
+				<tr>
+				<td width="200"><p align="center">공개여부</td>
+				<td colspan="2"><select name="qa_secret">
+					<option value="${board.qaSecret}" >공개여부 : ${board.qaSecret}</option>
+					<option value="Y" >공개</option>
+					<option value="N" >비공개</option>
+				</select> </td>
+			</tr>
 			
 			<tr>
 				<td width="200"><p align="right">아이디</td>
-				<td width="400"><input type="text" name="user_ID" value="${member.user_ID }" disabled/> </td>
+				<td width="400"><input type="text" name="user_ID" value="${member.userID }" disabled/> </td>
 			</tr>
+		
 			<tr>
 				<td width="200"><p>&nbsp;</p></td>
 				<td width="400">
