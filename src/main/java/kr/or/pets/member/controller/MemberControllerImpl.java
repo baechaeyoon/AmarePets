@@ -153,7 +153,7 @@ public class MemberControllerImpl extends MultiActionController implements Membe
 			}
 			//②else
 			else {
-				mav.setViewName("redirect:/member/listMembers.do");
+				mav.setViewName("redirect:/main.do");
 			}
 			
 		}
@@ -175,7 +175,7 @@ public class MemberControllerImpl extends MultiActionController implements Membe
 		session.removeAttribute("isLogOn");
 		
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("redirect:/member/listMembers.do");
+		mav.setViewName("redirect:/main.do");
 		
 		return mav;
 	}
@@ -218,3 +218,4 @@ public class MemberControllerImpl extends MultiActionController implements Membe
 		return mav;
 	}
 }
+

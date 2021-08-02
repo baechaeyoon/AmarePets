@@ -13,7 +13,7 @@ public interface MissDAO {
 
 	public int selectTotBoards() throws DataAccessException;
 
-	public int deleteBoard(int miss_boardNum) throws DataAccessException;
+	public int deleteBoard(int missBoardNum) throws DataAccessException;
 
 	public int insertBoard(Map missMap) throws DataAccessException;
 

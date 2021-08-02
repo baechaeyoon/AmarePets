@@ -86,7 +86,7 @@ public class BoardVO {
 	public void setQaDate(Date qaDate) {
 		this.qaDate = qaDate;
 	}
-
+ 
 	public String getUserID() {
 		return userID;
 	}

@@ -49,7 +49,7 @@
 	function fn_enable() {
 		document.getElementById("qa_title_mod").disabled=false;
 		document.getElementById("qa_content_mod").disabled=false;
-		document.getElementById("qa_category_mod").disabled=false;
+		document.getElementById("qaCategory_mod").disabled=false;
 		document.getElementById("qa_secret_mod").disabled=false;
 		document.getElementById("tr_btn_modify").style.display="block";
 		document.getElementById("tr_btn").style.display="none";
@@ -101,7 +101,7 @@
 				
 			<tr>
 				<td width="200"><p align="center">제목</td>
-				<td colspan="2" width="300"><input type="text" id="qa_title_mod" name="qa_title" value="${board.qaTitle}" disabled /> </td>
+				<td colspan="2" width="300"><input type="text" id="qa_title_mod" name="qaTitle" value="${board.qaTitle}" disabled /> </td>
 			</tr>
 			
 			<tr>
@@ -117,7 +117,7 @@
 			
 			<tr>
 				<td width="200"><p align="center">내용</td>
-				<td colspan="2" width="300"><textarea rows="4" id="qa_content_mod" cols="40" name="qa_content" disabled>${board.qaContent}</textarea> </td>
+				<td colspan="2" width="300"><textarea rows="4" id="qa_content_mod" cols="40" name="qaContent" disabled>${board.qaContent}</textarea> </td>
 			</tr>
 			
 			<tr>
@@ -127,7 +127,7 @@
 			
 			<tr>
 				<td><p align="center">공개여부</td>
-				<td colspan="2" width="300"><select name="qa_secret" id="qa_secret_mod" disabled>
+				<td colspan="2" width="300"><select name="qaSecret" id="qa_secret_mod" disabled>
 					<option value="${board.qaSecret}" >공개여부 : ${board.qaSecret}</option>
 					<option value="Y" >공개</option>
 					<option value="N" >비공개</option>
@@ -136,7 +136,7 @@
 			
 			<tr>
 				<td width="200"><p align="center">등록자</td>
-				<td colspan="2" width="300"><input type="text" name="user_id" value="${board.userID}" disabled/> </td>
+				<td colspan="2" width="300"><input type="text" name="userID" value="${board.userID}" disabled/> </td>
 			</tr>
 			
 			<tr id="tr_btn_modify" align="right">
@@ -148,7 +148,7 @@
 			
 			<tr id="tr_btn">
 				<td colspan="3" align="center">
-				<c:if test="${member.user_ID == board.user_ID }">
+				<c:if test="${member.userID == board.userID }">
 					<input type="button" class="btn btn-warning" value="수정하기" onclick="fn_enable()" />
 					<input type="button" class="btn btn-danger" value="삭제하기" onclick="removeList(this.form)">
 					</c:if>

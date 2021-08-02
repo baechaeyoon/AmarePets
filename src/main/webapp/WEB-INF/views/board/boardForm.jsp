@@ -48,13 +48,13 @@
 		<table align="center">
 			<tr>
 				<td width="200"><p align="right">제목</td>
-				<td width="400"><input type="text" name="qa_title" /> </td>
+				<td width="400"><input type="text" name="qaTitle" /> </td>
 			</tr>
 			
 			<tr>
 				<td width="200"><p align="right">카테고리</td>
 				<!-- <td width="400"><input type="text" name="qa_category" /> </td> -->
-				<td><select name="qa_category">
+				<td><select name="qaCategory">
 					<option value="동물" >동물</option>
 					<option value="개인" >개인</option>
 					<option value="단체" >단체</option>
@@ -64,11 +64,11 @@
 			
 			<tr>
 				<td width="200"><p align="right">내용</td>
-				<td width="400"><textarea rows="20" cols="60" name="qa_content"></textarea> </td>
+				<td width="400"><textarea rows="20" cols="60" name="qaContent"></textarea> </td>
 			</tr>
 				<tr>
 				<td width="200"><p align="center">공개여부</td>
-				<td colspan="2"><select name="qa_secret">
+				<td colspan="2"><select name="qaSecret">
 					<option value="${board.qaSecret}" >공개여부 : ${board.qaSecret}</option>
 					<option value="Y" >공개</option>
 					<option value="N" >비공개</option>
@@ -77,7 +77,7 @@
 			
 			<tr>
 				<td width="200"><p align="right">아이디</td>
-				<td width="400"><input type="text" name="user_ID" value="${member.userID }" disabled/> </td>
+				<td width="400"><input type="text" name="userID" value="${member.userID }" disabled/> </td>
 			</tr>
 		
 			<tr>

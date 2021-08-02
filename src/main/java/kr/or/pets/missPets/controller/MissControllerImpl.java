@@ -124,16 +124,16 @@ public class MissControllerImpl extends MultiActionController implements MissCon
 		HttpSession session = multipartRequest.getSession();
 		MemberVO memberVO = (MemberVO)session.getAttribute("member");
 		
-		String user_ID = memberVO.getUserID();	
-		String user_NAME = memberVO.getUserNAME();
-		String user_Email = memberVO.getUserEmail();
-		String user_Address = memberVO.getUserAddress();
-		String user_PhoneNumber = memberVO.getUserPhoneNumber();
-		missMap.put("user_ID", user_ID);	
-		missMap.put("user_NAME", user_NAME);	
-		missMap.put("user_Email", user_Email);	
-		missMap.put("user_Address", user_Address);	
-		missMap.put("user_PhoneNumber", user_PhoneNumber);	
+		String userID = memberVO.getUserID();	
+		String userNAME = memberVO.getUserNAME();
+		String userEmail = memberVO.getUserEmail();
+		String userAddress = memberVO.getUserAddress();
+		String userPhoneNumber = memberVO.getUserPhoneNumber();
+		missMap.put("userID", userID);	
+		missMap.put("userNAME", userNAME);	
+		missMap.put("userEmail", userEmail);	
+		missMap.put("userAddress", userAddress);	
+		missMap.put("userPhoneNumber", userPhoneNumber);	
 		
 		 HttpHeaders responseHeaders = new HttpHeaders();
 		   responseHeaders.add("Content-Type", "text/html; charset=utf-8");
@@ -148,8 +148,8 @@ public class MissControllerImpl extends MultiActionController implements MissCon
 		     
 				  message = "<script>";
 				  message += " alert('새글을 등록했습니다.');";			  
-				  message += " location.href='"+multipartRequest.getContextPath()+"/miss/m_viewBoard.do?miss_boardNum="
-					  		+ missMap.get("miss_boardNum") +   "';";			  
+				  message += " location.href='"+multipartRequest.getContextPath()+"/miss/m_viewBoard.do?missBoardNum="
+					  		+ missMap.get("missBoardNum") +   "';";			  
 				  message += " </script>";
 				  
 				  responseEntity = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);	     

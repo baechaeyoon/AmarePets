@@ -7,21 +7,21 @@
   	
   	<resultMap type="missVO" id="missResult">
   		<result property="level" column="lvl" />
-  		<result property="miss_boardNum" column="miss_boardNum" />
-  		<result property="miss_name" column="miss_name" />
-  		<result property="user_NAME" column="user_NAME" />
-  		<result property="user_Email" column="user_Email" />
-  		<result property="user_Address" column="user_Address" />
-  		<result property="user_PhoneNumber" column="user_PhoneNumber" />
-  		<result property="miss_kind" column="miss_kind" />
-  		<result property="miss_gender" column="miss_gender" />
-  		<result property="miss_age" column="miss_age" />
-  		<result property="miss_place" column="miss_place" />
-  		<result property="miss_missdate" column="miss_missdate" />
-  		<result property="miss_character" column="miss_character" />
-  		<result property="miss_registNum" column="miss_registNum" />
-  		<result property="miss_img" column="miss_img" />
-  		<result property="user_ID" column="user_ID" />
+  		<result property="missBoardNum" column="missBoardNum" />
+  		<result property="missName" column="missName" />
+  		<result property="userNAME" column="userNAME" />
+  		<result property="userEmail" column="userEmail" />
+  		<result property="userAddress" column="userAddress" />
+  		<result property="userPhoneNumber" column="userPhoneNumber" />
+  		<result property="missKind" column="missKind" />
+  		<result property="missGender" column="missGender" />
+  		<result property="missAge" column="missAge" />
+  		<result property="missPlace" column="missPlace" />
+  		<result property="missMissdate" column="missMissdate" />
+  		<result property="missCharacter" column="missCharacter" />
+  		<result property="missRegistNum" column="missRegistNum" />
+  		<result property="missImg" column="missImg" />
+  		<result property="userID" column="userID" />
   	</resultMap>
   	
   	<select id="selectAllBoardList" resultMap="missResult">
@@ -29,29 +29,29 @@
   	
  	 select * from (
 		                select rownum as recNum
-		                      ,miss_boardNum
-		                      ,miss_name
-		                      ,user_NAME
-		                      ,miss_kind
-		                      ,miss_gender
-		                      ,miss_place
-		                      ,miss_missdate
-		                      ,miss_character
-		                      ,miss_img
-		                      ,user_ID
+		                      ,missBoardNum
+		                      ,missName
+		                      ,userNAME
+		                      ,missKind
+		                      ,missGender
+		                      ,missPlace
+		                      ,missMissdate
+		                      ,missCharacter
+		                      ,missImg
+		                      ,userID
 		                from (
 		                select 
-			                      miss_boardNum
-			                      ,miss_name
-			                      ,user_NAME
-			                      ,miss_kind
-			                      ,miss_gender
-			                      ,miss_place
-			                      ,miss_missdate
-			                      ,miss_character
-			                      ,miss_img
-			                      ,user_ID
-		                        from miss_board
+			                      missBoardNum
+			                      ,missName
+			                      ,userNAME
+			                      ,missKind
+			                      ,missGender
+			                      ,missPlace
+			                      ,missMissdate
+			                      ,missCharacter
+			                      ,missImg
+			                      ,userID
+		                        from missBoard
 		                      )  
 		            )
 		where recNum BETWEEN (#{section}-1)*100+(#{pageNum}-1)*10+1 and (#{section}-1)*100+#{pageNum}*10
@@ -61,96 +61,96 @@
   </select>
   
   <select id="selectTotBoards" resultType="int">
-		select count(miss_boardNum) from miss_board
+		select count(missBoardNum) from missBoard
 	</select>
   
   <insert id="insertBoard" parameterType="java.util.Map">
   	<![CDATA[
-  		insert into miss_board (miss_boardNum
-  								  ,miss_name
-  								  ,user_NAME
-			                      ,user_Email
-			                      ,user_Address
-			                      ,user_PhoneNumber
-			                      ,miss_kind
-			                      ,miss_gender
-			                      ,miss_age
-			                      ,miss_place
-			                      ,miss_missdate
-			                      ,miss_character
-			                      ,miss_registNum
-			                      ,miss_img
-			                      ,user_ID)
+  		insert into missBoard (missBoardNum
+  								  ,missName
+  								  ,userNAME
+			                      ,userEmail
+			                      ,userAddress
+			                      ,userPhoneNumber
+			                      ,missKind
+			                      ,missGender
+			                      ,missAge
+			                      ,missPlace
+			                      ,missMissdate
+			                      ,missCharacter
+			                      ,missRegistNum
+			                      ,missImg
+			                      ,userID)
 
-  		values (					#{miss_boardNum} 
-  								  ,#{miss_name}
-  								  ,#{user_NAME}
-			                      ,#{user_Email}
-			                      ,#{user_Address}
-			                      ,#{user_PhoneNumber}
-			                      ,#{miss_kind}
-			                      ,#{miss_gender}
-			                      ,#{miss_age}
-			                      ,#{miss_place}
-			                      ,#{miss_missdate}
-			                      ,#{miss_character}
-			                      ,#{miss_registNum}
-			                      ,#{miss_img}
-			                      ,#{user_ID})
+  		values (					#{missBoardNum} 
+  								  ,#{missName}
+  								  ,#{userNAME}
+			                      ,#{userEmail}
+			                      ,#{userAddress}
+			                      ,#{userPhoneNumber}
+			                      ,#{missKind}
+			                      ,#{missGender}
+			                      ,#{missAge}
+			                      ,#{missPlace}
+			                      ,#{missMissdate}
+			                      ,#{missCharacter}
+			                      ,#{missRegistNum}
+			                      ,#{missImg}
+			                      ,#{userID})
   	]]>
   </insert>
   
   <select id="selectNewMiss_boardNum" resultType="int">
 		<![CDATA[
-			SELECT NVL(MAX(miss_boardNum), 0) + 1 FROM miss_board
+			SELECT NVL(MAX(missBoardNum), 0) + 1 FROM missBoard
 		]]>
 	</select>
   
   <delete id="deleteBoard" parameterType="Integer">
   		<![CDATA[
-  			delete from miss_board
+  			delete from missBoard
   			where
-  			miss_boardNum=#{miss_boardNum}
+  			missBoardNum=#{missBoardNum}
   		]]>
   	</delete>
   
   <select id="viewBoard" parameterType="Integer" resultType="missVO">
   	<![CDATA[
-  		select * from miss_board
+  		select * from missBoard
   		where 
-  		miss_boardNum=#{miss_boardNum}
+  		missBoardNum=#{missBoardNum}
   	]]>
   </select>
   
   <update id="updateBoard" parameterType="java.util.Map" >
   	<![CDATA[
-  		update miss_board set
-  			miss_name = #{miss_name},
-  			miss_kind = #{miss_kind},
-  			miss_gender = #{miss_gender},
-  			miss_age = #{miss_age},
-  			miss_place = #{miss_place},
-  			miss_missdate = #{miss_missdate},
-  			miss_character = #{miss_character},
-  			miss_registNum = #{miss_registNum},
-  			miss_img = #{miss_img}
-  		where miss_boardNum = #{miss_boardNum}
+  		update missBoard set
+  			missName = #{missName},
+  			missKind = #{missKind},
+  			missGender = #{missGender},
+  			missAge = #{missAge},
+  			missPlace = #{missPlace},
+  			missMissdate = #{missMissdate},
+  			missCharacter = #{missCharacter},
+  			missRegistNum = #{missRegistNum},
+  			missImg = #{missImg}
+  		where missBoardNum = #{missBoardNum}
   	]]>
   </update>
   
   <select id="selectKeywordSearch" resultType="String" parameterType="String">
 		<![CDATA[
-			SELECT miss_name FROM miss_board
+			SELECT missName FROM missBoard
 			WHERE 
-			miss_name LIKE '%' || #{keyword} || '%' 
+			missName LIKE '%' || #{keyword} || '%' 
 		
 		]]>
 	</select>
 	
 	<select id="selectBoardsBySearchWord" resultMap="missResult" parameterType="String">
-			SELECT T.* FROM miss_board T
+			SELECT T.* FROM missBoard T
 			WHERE 
-			T.miss_name LIKE '%' || #{searchWord} || '%' 
+			T.missName LIKE '%' || #{searchWord} || '%' 
 		
 	</select>
   	

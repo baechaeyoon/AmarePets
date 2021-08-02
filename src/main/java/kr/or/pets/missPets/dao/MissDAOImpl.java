@@ -38,17 +38,17 @@ public class MissDAOImpl implements MissDAO {
 	}
 
 	@Override
-	public int deleteBoard(int miss_boardNum) {
-		int result = sqlSession.delete("mapper.miss.deleteBoard", miss_boardNum);
+	public int deleteBoard(int missBoardNum) {
+		int result = sqlSession.delete("mapper.miss.deleteBoard", missBoardNum);
 		return result;
 	}
 
 	@Override
 	public int insertBoard(Map missMap) {
-		int miss_boardNum = selectNewMiss_boardNum();
-		missMap.put("miss_boardNum", miss_boardNum);
+		int missBoardNum = selectNewMiss_boardNum();
+		missMap.put("missBoardNum", missBoardNum);
 		sqlSession.insert("mapper.miss.insertBoard", missMap);
-		return miss_boardNum;
+		return missBoardNum;
 	}
 	
 	public int selectNewMiss_boardNum() throws DataAccessException {
@@ -56,8 +56,8 @@ public class MissDAOImpl implements MissDAO {
 	}
 
 	@Override
-	public MissVO viewBoard(int miss_boardNum) {
-		return sqlSession.selectOne("mapper.miss.viewBoard", miss_boardNum);
+	public MissVO viewBoard(int missBoardNum) {
+		return sqlSession.selectOne("mapper.miss.viewBoard", missBoardNum);
 	}
 
 	@Override

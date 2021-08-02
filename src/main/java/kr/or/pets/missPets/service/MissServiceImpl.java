@@ -40,23 +40,23 @@ public class MissServiceImpl implements MissService {
 	}
 
 	@Override
-	public int m_removeBoard(int miss_boardNum) throws DataAccessException {
+	public int m_removeBoard(int missBoardNum) throws DataAccessException {
 		
-		return missDAO.deleteBoard(miss_boardNum);
+		return missDAO.deleteBoard(missBoardNum);
 	}
 
 	@Override
 	public int m_addBoard(Map missMap) throws DataAccessException {
-		int miss_boardNum = missDAO.insertBoard(missMap);
-		missMap.put("miss_boardNum", miss_boardNum);
+		int missBoardNum = missDAO.insertBoard(missMap);
+		missMap.put("missBoardNum", missBoardNum);
 		
-		return miss_boardNum;
+		return missBoardNum;
 	}
 
 	@Override
-	public Map m_viewBoard(int miss_boardNum) throws Exception {
+	public Map m_viewBoard(int missBoardNum) throws Exception {
 		Map missMap = new HashMap();
-		MissVO missVO = missDAO.viewBoard(miss_boardNum);
+		MissVO missVO = missDAO.viewBoard(missBoardNum);
 		
 		missMap.put("miss", missVO);
 		

@@ -58,11 +58,6 @@
 
 	<table class="table table-hover">
 		<tr>
-    			<td colspan="5" style="display:inline-block; align:right; border:white;">
-    				<a href="javascript:fn_boardForm('${isLogOn}', '${contextPath}/board/boardForm.do', '${contextPath}/member/loginForm.do')">문의 작성하기</a>
-    			</td>
-    		</tr>
-		<tr>
 			<th style="width:10%;"><b>번호</b></th>
 			<th style="width:20%;"><b>아이디</b></th>
 			<th style="width:50%;"><b>제목</b></th>
@@ -93,6 +88,11 @@
 						</p>
 					</td>
 				</tr>
+				<tr>
+    			<td colspan="5" style="display:inline-block; align:right; border:white;">
+    				<a href="javascript:fn_boardForm('${isLogOn}', '${contextPath}/board/boardForm.do', '${contextPath}/member/loginForm.do')">문의 작성하기</a>
+    			</td>
+    		</tr>
 		</c:when>
 		
 		
@@ -119,6 +119,11 @@
 				<td>${board.qaCategory }</td>
 				<td>${board.qaDate }</td>
 			</tr>
+			<tr>
+    			<td colspan="5" style="display:inline-block; align:right; border:white;">
+    				<a href="javascript:fn_boardForm('${isLogOn}', '${contextPath}/board/boardForm.do', '${contextPath}/member/loginForm.do')">문의 작성하기</a>
+    			</td>
+    		</tr>
 			<c:set var="num" value="${num-1 }"></c:set>
 		</c:forEach>
 		</c:when>

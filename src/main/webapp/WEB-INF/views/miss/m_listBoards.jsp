@@ -73,7 +73,7 @@
 	<br>
 		<c:choose>
 		
-		<c:when test="${empty member.user_ID }">
+		<c:when test="${empty member.userID }">
 			<tr height="10">
 					<td colspan="5">
 						<p align="center">
@@ -110,15 +110,15 @@
 						    </div>
 						    <div>
 						        <dl><dt>게시번호</dt><dd>${num }</dd></dl><br/>
-						        <dl><dt>이름</dt><dd>${miss.miss_name}</dd></dl><br/>
-						        <dl><dt>신고자</dt><dd>${miss.user_NAME}</dd></dl><br/>
-						        <dl><dt>품종</dt><dd>${miss.miss_kind}</dd></dl><br/>
-						        <dl><dt>성별</dt><dd>${miss.miss_gender}</dd></dl><br/>
-						        <dl><dt>분실날짜</dt><dd>${miss.miss_missdate}</dd></dl><br/>
-						        <dl><dt>분실장소</dt><dd>${miss.miss_place}</dd></dl><br/>
-						        <dl><dt>특징</dt><dd>${miss.miss_character}</dd></dl><br>
+						        <dl><dt>이름</dt><dd>${miss.missName}</dd></dl><br/>
+						        <dl><dt>신고자</dt><dd>${miss.userNAME}</dd></dl><br/>
+						        <dl><dt>품종</dt><dd>${miss.missKind}</dd></dl><br/>
+						        <dl><dt>성별</dt><dd>${miss.missGender}</dd></dl><br/>
+						        <dl><dt>분실날짜</dt><dd>${miss.missMissdate}</dd></dl><br/>
+						        <dl><dt>분실장소</dt><dd>${miss.missPlace}</dd></dl><br/>
+						        <dl><dt>특징</dt><dd>${miss.missCharacter}</dd></dl><br>
 						        <div style="float: left;">
-					        		<a href="${contextPath}/miss/m_viewBoard.do?miss_boardNum=${miss.miss_boardNum}"><p style="font-size: 12px;">  자세히 보기</p></a>
+					        		<a href="${contextPath}/miss/m_viewBoard.do?missBoardNum=${miss.missBoardNum}"><p style="font-size: 12px;">  자세히 보기</p></a>
 					        	</div>
 						    </div>
 						</div>
@@ -130,76 +130,6 @@
 		
 		</c:choose>
 	<div style="clear: both;"></div> 
-
-	<%-- <table class="table table-hover">
-		<tr>
-    			<td colspan="5" style="display:inline-block; align:right; border:white;">
-    				<a href="javascript:fn_boardForm('${isLogOn}', '${contextPath}/miss/missForm.do', '${contextPath}/member/loginForm.do')">실종동물 등록하기</a>
-    			</td>
-    		</tr>
-		<tr>
-			<th style="width:10%;"><b>번호</b></th>
-			<th style="width:20%;"><b>아이디</b></th>
-			<th style="width:50%;"><b>제목</b></th>
-			<th style="width:10%;"><b>카테고리</b></th>
-			<th style="width:10%;"><b>날짜</b></th>
-		</tr>
-		
-		
-		<c:choose>
-		
-			<c:when test="${empty member.user_ID }">
-			<tr height="10">
-					<td colspan="5">
-						<p align="center">
-							<b><span style="font-size: 9pt;">로그인을 해주세요.</span></b>
-						</p>
-					</td>
-				</tr>
-		</c:when>
-		
-		
-		
-			<c:when test="${empty boardsList }">
-				<tr height="10">
-					<td colspan="5">
-						<p align="center">
-							<b><span style="font-size: 9pt;">등록된 글이 없습니다.</span></b>
-						</p>
-					</td>
-				</tr>
-		</c:when>
-		
-		
-		<c:when test="${!empty boardsList }">
-		<c:set var="num" value="${boardMap.totBoards - ((boardMap.pageNum-1)*10) }" />
-		<c:forEach var="board" items="${boardsList }" varStatus="boardNum" >
-			<tr align="center">
-				<td>${num }</td>
-				<td>${board.user_ID }</td>
-				<td>
-			 <c:if test="${board.qa_secret eq 'N'}" >
-            <c:choose>
-                <c:when test="${board.user_ID eq member.user_ID}">
-                    <a href="${contextPath}/board/viewBoard.do?qa_No=${board.qa_No}">${board.qa_title }</a>
-                </c:when>
-                <c:otherwise>비밀글 입니다.</c:otherwise>
-            </c:choose>
-        </c:if>
-        <c:if test="${board.qa_secret eq 'Y'}" >
-            <a href="${contextPath}/board/viewBoard.do?qa_No=${board.qa_No}">${board.qa_title }</a>
-        </c:if>
-			 	
-			 </td>
-				<td>${board.qa_category }</td>
-				<td>${board.qa_date }</td>
-			</tr>
-			<c:set var="num" value="${num-1 }"></c:set>
-		</c:forEach>
-		</c:when>
-		
-		</c:choose>
-	</table> --%>
 
 	<div class="class2">
 		<c:if test="${totBoards != null }">
