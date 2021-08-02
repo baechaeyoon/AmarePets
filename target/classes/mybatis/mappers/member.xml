@@ -5,13 +5,13 @@
   
   <mapper namespace="mapper.member">
   	<resultMap type="memberVO" id="memResult">
-  		<result property="userID" column="user_ID"/>
-  		<result property="userPW" column="user_PW"/>
-  		<result property="userNAME" column="user_NAME"/>
-  		<result property="userEmail" column="user_Email"/>
-  		<result property="userAddress" column="user_Address"/>
-  		<result property="userPhoneNumber" column="user_PhoneNumber"/>
-  		<result property="userIC" column="user_IC"/>
+  		<result property="userID" column="userID"/>
+  		<result property="userPW" column="userPW"/>
+  		<result property="userNAME" column="userNAME"/>
+  		<result property="userEmail" column="userEmail"/>
+  		<result property="userAddress" column="userAddress"/>
+  		<result property="userPhoneNumber" column="userPhoneNumber"/>
+  		<result property="userIC" column="userIC"/>
   	</resultMap>
   	
   	<select id="selectAllMemberList" resultMap="memResult">
@@ -31,7 +31,7 @@
   	
   	<insert id="insertMember" parameterType="memberVO" >
   		<![CDATA[
-  			INSERT INTO pets_user(user_ID, user_PW, user_NAME, user_Email, user_Address, user_PhoneNumber, user_IC)
+  			INSERT INTO pets_user(userID, userPW, userNAME, userEmail, userAddress, userPhoneNumber, userIC)
   			VALUES (#{userID}, #{userPW}, #{userNAME}, #{userEmail}, #{userAddress}, #{userPhoneNumber}, #{userIC, jdbcType=VARCHAR})
   		]]>
   	</insert>
@@ -39,14 +39,14 @@
   	<delete id="deleteMember" parameterType="String">
   		<![CDATA[
   			DELETE FROM pets_user
-  			WHERE user_ID = #{userID}
+  			WHERE userID = #{userID}
   		]]>
   	</delete>
   	
   	<select id="loginById" resultType="memberVO" parameterType="memberVO">
 		<![CDATA[
 			SELECT * FROM  pets_user
-			WHERE user_ID=#{userID} AND user_PW=#{userPW}
+			WHERE userID=#{userID} AND userPW=#{userPW}
 		]]>
 	</select>
   	
@@ -55,7 +55,7 @@
 		<![CDATA[
 			SELECT user_Address FROM pets_user
 			WHERE 
-			user_Address LIKE '%' || #{keyword} || '%' AND user_IC LIKE '%Corporation%'
+			userAddress LIKE '%' || #{keyword} || '%' AND userIC LIKE '%Corporation%'
 		
 		]]>
 	</select>
@@ -63,7 +63,7 @@
 	<select id="selectBoardsBySearchWord" resultMap="memResult" parameterType="String">
 			SELECT T.* FROM pets_user T
 			WHERE 
-			T.user_Address LIKE '%' || #{searchWord} || '%' AND user_IC LIKE '%Corporation%'
+			T.userAddress LIKE '%' || #{searchWord} || '%' AND userIC LIKE '%Corporation%'
 		
 	</select>
   </mapper>

@@ -20,12 +20,6 @@
 
 }
 
-.navbar-brand {
-	font-family: 'Nanum Gothic', sans-serif;
-	text-align: left;
-	margin-bottom: 500px;
-}
-
 
 
 .loginForm {

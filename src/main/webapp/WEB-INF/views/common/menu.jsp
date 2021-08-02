@@ -215,7 +215,7 @@ color:#D6C197;
 					<div style="text-align: right;">
 						<c:choose>
 								<c:when test="${isLogOn == true && member != null }">
-									<h3 class="welcome">Welcome! ${member.user_NAME}</h3>
+									<h3 class="welcome">Welcome! ${member.userNAME}</h3>
 									<a class="logout" href="${contextPath}/member/logout.do"><h3>Log out</h3></a>
 								</c:when>
 								<c:otherwise>

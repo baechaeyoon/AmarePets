@@ -26,7 +26,7 @@
 				<td>${member.userNAME}</td>
 				<td>${member.userEmail}</td>
 				<td>${member.userAddress}</td>
-				<td><a href="${contextPath}/member/removeMember.do?user_ID=${member.userID}">삭제하기</a></td>
+				<td><a href="${contextPath}/member/removeMember.do?userID=${member.userID}">삭제하기</a></td>
 			</tr>
 		</c:forEach>
 	</table>
